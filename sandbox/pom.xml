@@ -10,13 +10,12 @@
 	</parent>
 
 	<groupId>ca.zhoozhoo.experimental</groupId>
-	<artifactId>sandbox</artifactId>
+	<artifactId>reactive</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
 
 	<properties>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 		<project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
-		<postgres.version>42.5.0</postgres.version>
 		<liquibase.version>4.17.2</liquibase.version>
 		<testcontainers-keycloak.version>2.4.0</testcontainers-keycloak.version>
 	</properties>
@@ -54,21 +53,16 @@
 			<optional>true</optional>
 		</dependency>
 		<dependency>
-			<groupId>org.postgresql</groupId>
-			<artifactId>postgresql</artifactId>
-			<version>${postgres.version}</version>
-		</dependency>
-		<dependency>
 			<groupId>org.liquibase</groupId>
 			<artifactId>liquibase-core</artifactId>
 			<version>${liquibase.version}</version>
 		</dependency>
 		<dependency>
-			<groupId>io.r2dbc</groupId>
+			<groupId>org.postgresql</groupId>
 			<artifactId>r2dbc-postgresql</artifactId>
-			<scope>runtime</scope>
 		</dependency>
 
+		<!-- test dependencies -->
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-test</artifactId>
@@ -76,7 +70,7 @@
 		</dependency>
 		<dependency>
 			<groupId>org.testcontainers</groupId>
-			<artifactId>testcontainers</artifactId>
+			<artifactId>r2dbc</artifactId>
 			<scope>test</scope>
 		</dependency>
 		<dependency>
@@ -86,6 +80,11 @@
 		</dependency>
 		<dependency>
 			<groupId>org.testcontainers</groupId>
+			<artifactId>postgresql</artifactId>
+			<scope>test</scope>
+		</dependency>
+		<dependency>
+			<groupId>org.postgresql</groupId>
 			<artifactId>postgresql</artifactId>
 			<scope>test</scope>
 		</dependency>

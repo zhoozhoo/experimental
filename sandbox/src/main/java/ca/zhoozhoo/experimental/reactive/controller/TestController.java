@@ -1,4 +1,4 @@
-package ca.zhoozhoo.demo.controller;
+package ca.zhoozhoo.experimental.reactive.controller;
 
 import java.util.UUID;
 
@@ -7,8 +7,8 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import ca.zhoozhoo.demo.model.Employee;
-import ca.zhoozhoo.demo.repository.EmployeeRepository;
+import ca.zhoozhoo.experimental.reactive.model.Employee;
+import ca.zhoozhoo.experimental.reactive.repository.EmployeeRepository;
 import lombok.RequiredArgsConstructor;
 import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;

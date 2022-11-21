@@ -1,4 +1,4 @@
-package ca.zhoozhoo.demo.model;
+package ca.zhoozhoo.experimental.reactive.model;
 
 import java.util.UUID;
 

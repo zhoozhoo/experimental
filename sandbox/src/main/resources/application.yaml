@@ -4,4 +4,8 @@ spring:
     username: 
     password:
   liquibase:
+    enabled: true
     change-log: classpath:db/changelog/db.changelog-master.xml
+    url: jdbc:postgresql://localhost:5432/springbootdb
+    user: 
+    password:

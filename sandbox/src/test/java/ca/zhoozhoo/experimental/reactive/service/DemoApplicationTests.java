@@ -1,23 +1,30 @@
 package ca.zhoozhoo.experimental.reactive.service;
 
-import static org.junit.jupiter.api.Assertions.assertNotNull;
-
 import java.util.UUID;
 
+import org.junit.ClassRule;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.data.r2dbc.DataR2dbcTest;
+import org.springframework.boot.test.util.TestPropertyValues;
+import org.springframework.context.ApplicationContextInitializer;
+import org.springframework.context.ConfigurableApplicationContext;
 import org.springframework.data.r2dbc.core.R2dbcEntityTemplate;
 import org.springframework.test.context.ActiveProfiles;
-import org.testcontainers.junit.jupiter.Testcontainers;
+import org.testcontainers.containers.PostgreSQLContainer;
 
 import ca.zhoozhoo.experimental.reactive.model.Employee;
 import ca.zhoozhoo.experimental.reactive.repository.EmployeeRepository;
 
 @DataR2dbcTest
 @ActiveProfiles("test")
-@Testcontainers
 class DemoApplicationTests {
+
+	@ClassRule
+    public static PostgreSQLContainer<?> postgreSQLContainer = new PostgreSQLContainer<>("postgres:15.0")
+      .withDatabaseName("integration-tests-db")
+      .withUsername("sa")
+      .withPassword("sa");
 
 	@Autowired
 	private R2dbcEntityTemplate template;
@@ -30,22 +37,22 @@ class DemoApplicationTests {
 	}
 
 	@Test
-	public void testDatabaseClientExisted() {
-		assertNotNull(template);
-	}
-
-	@Test
-	public void testPostRepositoryExisted() {
-		assertNotNull(employeeRepository);
-		System.out.println("Done");
-	}
-
-	@Test
 	public void testInsertAndQuery() {
 		var data = new Employee(UUID.randomUUID(), "name");
 		this.template.insert(data)
 				.thenMany(employeeRepository.findAll())
 				.log();
 
+	}
+
+	static class Initializer
+	implements ApplicationContextInitializer<ConfigurableApplicationContext> {
+	  public void initialize(ConfigurableApplicationContext configurableApplicationContext) {
+		  TestPropertyValues.of(
+			"spring.datasource.url=" + postgreSQLContainer.getJdbcUrl(),
+			"spring.datasource.username=" + postgreSQLContainer.getUsername(),
+			"spring.datasource.password=" + postgreSQLContainer.getPassword()
+		  ).applyTo(configurableApplicationContext.getEnvironment());
+	  }
 	}
 }

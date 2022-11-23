@@ -16,7 +16,7 @@ import reactor.core.publisher.Mono;
 @RestController
 @RequestMapping("/employees")
 @RequiredArgsConstructor
-public class TestController {
+public class EmployeeController {
 
     private final EmployeeRepository employeeRepository;
 

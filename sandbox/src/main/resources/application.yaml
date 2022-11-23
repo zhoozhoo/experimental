@@ -1,11 +1,11 @@
 spring:
   r2dbc:
     url: r2dbc:postgresql://localhost:5432/springbootdb
-    username: 
-    password:
+    username: postgres
+    password: postgres
   liquibase:
     enabled: true
     change-log: classpath:db/changelog/db.changelog-master.xml
     url: jdbc:postgresql://localhost:5432/springbootdb
-    user: 
-    password:
+    user: postgres
+    password: postgres

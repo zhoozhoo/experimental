@@ -1,9 +1,0 @@
-# spring:
-#   r2dbc:
-#     url: r2dbc:tc:postgresql:///springbootdb?TC_IMAGE_TAG=15.0
-#   liquibase:
-#     url: jdbc:tc:postgresql:15.0:///springbootdb
-    
-logging:
-  level:
-    root: info

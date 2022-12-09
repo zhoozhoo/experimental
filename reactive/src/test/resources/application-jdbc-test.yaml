@@ -1,0 +1,22 @@
+spring:
+  liquibase:
+    enabled: true
+    drop-first: true
+
+  datasource:
+    driver-class-name: org.testcontainers.jdbc.ContainerDatabaseDriver
+    url: jdbc:tc:postgresql:13.4:///?TC_REUSABLE=true
+    username: postgres
+    password: postgres
+    
+ jpa:
+   show-sql: true
+   properties:
+     hibernate:
+       format_sql: true
+       generate_statistics: true
+
+
+logging:
+  level:
+    root: info
